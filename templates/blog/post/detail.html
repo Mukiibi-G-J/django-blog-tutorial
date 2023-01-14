@@ -28,7 +28,22 @@ Comment {{ forloop.counter }} by {{ comment.name }}
 </div>
 {% empty %}
 <p>There are no comments yet.</p>
+
 {% endfor %}
+<h2> Similar Posts</h2>
+{% for post  in  similar_posts %}
+
+<p>
+<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+
+
+{% empty %}
+
+There is are no similar posts
+
+{% endfor %}
+
+
 {% if new_comment %}
 <h2>Your comment has been added.</h2>
 {% else %}

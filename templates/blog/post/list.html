@@ -1,5 +1,7 @@
 {% extends "blog/base.html" %} {% block title %}My Blog{% endblock %} adfadsfads
 {% block content %}
+{% load blog_tags %}
+
 <h1>My Blog</h1>
 {% if tag %}
   <h2>Posts tagged with "{{ tag.name }}"</h2>
@@ -22,7 +24,12 @@
 </p>
 
 <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
-{{ post.body|truncatewords:30|linebreaks }} {% endfor %} 
+{% comment %} {{ post.body|truncatewords:30|linebreaks }} {% endcomment %}
+{{ post.body|markdown|truncatewords_html:30 }}
+
+
+
+{% endfor %} 
 
 {% include "pagination.html" with page=posts %} 
 {% endblock %}
